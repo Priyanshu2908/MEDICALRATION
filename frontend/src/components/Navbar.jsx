@@ -96,7 +96,7 @@ const Navbar = () => {
 
                                             <Link
                                                 className="p-2 flex items-center text-sm text-gray-800 hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 dark:text-neutral-200 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
-                                                href="/login"
+                                                href="/Login"
                                             >
                                                 <svg
                                                     className="shrink-0 size-4 me-3 md:me-2 block md:hidden"
@@ -170,7 +170,7 @@ const Navbar = () => {
                                     <div className=" flex flex-wrap items-center gap-x-1.5">
                                         <a
                                             className="py-[7px] px-2.5 inline-flex items-center font-medium text-sm rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 focus:outline-none focus:bg-gray-100 dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
-                                            href="#"
+                                            href="/Signup"
                                         >
                                             Sign in
                                         </a>

@@ -4,11 +4,11 @@ const mySchema = new Schema({
     name: String,
     email: { type: String, unique: true },
     password: { type: String, require: true },
-    city: { type: String, default: 'unknown' },
-    createdAt: { type: Date, default: Date.now }
+    confirmPassword: { type: String, require: true },
+
 });
 
-module.exports = model('users', mySchema);
+module.exports = model('user', mySchema);
 
 // title : String
 // price : Number

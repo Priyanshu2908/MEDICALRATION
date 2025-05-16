@@ -16,9 +16,7 @@ app.get('/', (req, res) => {
     res.send('response from express');
 });
 
-app.get('/add', (req, res) => {
-    res.send('response from add');
-});
+
 
 // getall
 // delete

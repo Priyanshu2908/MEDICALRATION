@@ -2,6 +2,7 @@
 import { IconLoader3, IconSend2 } from '@tabler/icons-react';
 import axios from 'axios';
 import { useFormik } from 'formik';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import toast from 'react-hot-toast';
@@ -14,17 +15,17 @@ const SignupSchema = Yup.object().shape({
     .required('Naam nhi hai kya?'),
   email: Yup.string().email('Invalid email').required('Required'),
   password: Yup.string().required('Password is required')
-    .matches(/[a-z]/, 'Lowercase letter is required')
-    .matches(/[A-Z]/, 'Uppercase letter is required')
-    .matches(/[0-9]/, 'Number is required')
-    .matches(/[\W]/, 'Special character is required'),
+  .matches(/[a-z]/, 'Lowercase letter is required')
+  .matches(/[A-Z]/, 'Uppercase letter is required')
+  .matches(/[0-9]/, 'Number is required')
+  .matches(/[\W]/, 'Special character is required'),
   confirmPassword: Yup.string().required('Confirm Password is required')
-    .oneOf([Yup.ref('password'), null], 'Passwords must match')
+  .oneOf([Yup.ref('password'), null], 'Passwords must match')
 });
 
 const Signup = () => {
+   const router =  useRouter();
 
-  const router = useRouter();
   // initializing formik
   const signupForm = useFormik({
     initialValues: {
@@ -33,21 +34,22 @@ const Signup = () => {
       password: '',
       confirmPassword: ''
     },
-    onSubmit: (value, { resetForm, setSubmitting }) => {
+    onSubmit: (value, {resetForm,setSubmitting}) => {
       console.log(value);
 
       // send values to backend
-      // sending request to backend
+      // send a post request to backend
       axios.post('http://localhost:5000/user/add', value)
-        .then((result) => {
-          toast.success('User registered successfully');
-          resetForm();
-          router.push('/login');
-        }).catch((err) => {
-          console.log(err);
-          toast.error('Something went wrong');
-          setSubmitting(false);
-        });
+      .then(() => {
+        toast.success('User registered successfully');
+        resetForm();
+        router.push('/Login');
+      }).catch((err) => {
+        console.log(err);
+        toast.error('Something went wrong');
+        setSubmitting(false);
+      });
+
     },
     validationSchema: SignupSchema
   })
@@ -63,12 +65,12 @@ const Signup = () => {
             </h1>
             <p className="mt-2 text-sm text-gray-600 dark:text-neutral-400">
               Already have an account?
-              <a
+              <Link
                 className="text-blue-600 decoration-2 hover:underline focus:outline-none focus:underline font-medium dark:text-blue-500"
-                href="../examples/html/signin.html"
+                href="/login"
               >
                 Sign in here
-              </a>
+              </Link>
             </p>
           </div>
           <div className="mt-5">
@@ -133,7 +135,7 @@ const Signup = () => {
                         height={16}
                         fill="currentColor"
                         viewBox="0 0 16 16"
-                        aria-hidden="true"
+                        // aria-hidden="true"
                       >
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
                       </svg>
@@ -174,7 +176,7 @@ const Signup = () => {
                         height={16}
                         fill="currentColor"
                         viewBox="0 0 16 16"
-                        aria-hidden="true"
+                        // aria-hidden="true"
                       >
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
                       </svg>
@@ -215,7 +217,7 @@ const Signup = () => {
                         height={16}
                         fill="currentColor"
                         viewBox="0 0 16 16"
-                        aria-hidden="true"
+                        // aria-hidden="true"
                       >
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
                       </svg>
@@ -256,7 +258,7 @@ const Signup = () => {
                         height={16}
                         fill="currentColor"
                         viewBox="0 0 16 16"
-                        aria-hidden="true"
+                        // aria-hidden="true"
                       >
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
                       </svg>
@@ -296,13 +298,13 @@ const Signup = () => {
                 </div>
                 {/* End Checkbox */}
                 <button
-                  disabled={signupForm.isSubmitting}
+                disabled={signupForm.isSubmitting}
                   type="submit"
                   className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
                 >
                   {
-                    signupForm.isSubmitting ? <IconLoader3 className='animate-spin' /> :
-                      <IconSend2 />
+                    signupForm.isSubmitting ? <IconLoader3 className='animate-spin'/>:
+                    <IconSend2/>
                   }
                   Sign up
                 </button>
