@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.global-btn{
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  padding: 5px;
+  border: none;
+}
